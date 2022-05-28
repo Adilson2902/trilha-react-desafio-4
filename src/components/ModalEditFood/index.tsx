@@ -5,14 +5,34 @@ import { Form } from './styles';
 import Modal from '../Modal';
 import Input from '../Input';
 
-class ModalEditFood extends Component {
-  constructor(props) {
+interface iFood 
+{
+  id: number;
+  name: string;
+  description: string;
+  available: boolean;
+  price: string;
+  image: string;
+}
+
+interface iProps {
+  isOpen: boolean;
+  setIsOpen: () => void;
+  editingFood: iFood;
+  handleUpdateFood: (food:iFood) => void;
+}
+
+class ModalEditFood extends Component<iProps> {
+
+  private formRef:any;
+
+  constructor(props: iProps) {
     super(props);
 
     this.formRef = createRef()
   }
 
-  handleSubmit = async (data) => {
+  handleSubmit = async (data: iFood) => {
     const { setIsOpen, handleUpdateFood } = this.props;
 
     handleUpdateFood(data);

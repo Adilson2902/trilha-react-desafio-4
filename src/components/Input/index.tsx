@@ -6,11 +6,21 @@ import {
 } from 'react';
 
 import { useField } from '@unform/core';
-
 import { Container } from './styles';
+import { string } from 'yup';
 
-const Input = ({ name, icon: Icon, ...rest }) => {
-  const inputRef = useRef(null);
+interface Icon {
+  size: number;
+}
+
+interface iPropsInput {
+   name: string;
+   icon?: any;
+   placeholder: string;
+}
+
+const Input: React.FC<iPropsInput> = ({ name, icon: Icon, ...rest }) => {
+  const inputRef = useRef<any>(null);
 
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
